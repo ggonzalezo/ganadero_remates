@@ -63,7 +63,6 @@
 
     <div class="col-sm-9">
       <div id="json_va_aqui">
-        <label>{{ form.values }}</label>
       </div>
     </div>
   </div>
@@ -85,8 +84,17 @@
       var feria = document.getElementById('feria').form[3].value;
       var url = 'http://127.0.0.1:8000/ganadero/'+ciudad+'/'+feria+'/'+animal;
       $.getJSON(url, function(result){
-        $.each(result, function(key, value){
-          $("json_va_aqui").append("<b>"+key+"--"+value+"<b><br />");
+        $.each(result, function(año, value){
+          $.each(value, function(mes, value2){
+            $.each(value2, function(precio, value3){
+              $.each(value3, function(key4, value4){
+                $.each(value4, function(key5, value5){
+                  $("#json_va_aqui").append(key5+": "+value5+"<br/>");
+                });
+                $("#json_va_aqui").append("<br>")
+              });
+            });
+          });
         });
       });
     });
