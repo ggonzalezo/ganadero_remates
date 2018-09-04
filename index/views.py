@@ -31,4 +31,4 @@ def estadistica(request,ciudad, feria, animal):
 
 	result = json.dumps(result)
 
-	return result
+	return HttpResponse(result, content_type='application/json')
